@@ -19,11 +19,6 @@ RUN apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/drolbr/Overpass-API.git
-WORKDIR /Overpass-API
-RUN git config --global user.email "you@example.com"
-RUN git checkout osm3s-v0.7.52
-#Merge commit for delta areas
-RUN git merge --no-edit -q 42b5962b10c948bbdfeaf9c7d3d45b9f8154d158
 
 WORKDIR /Overpass-API/src
 RUN \

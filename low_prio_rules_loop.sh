@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#NOTUSED. XXX TODO ? incremental loops ?
+
 source conf.sh
 
 #Do the areas at full once, and then 240 times (~10 days) using delta approach
