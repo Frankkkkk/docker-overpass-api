@@ -3,6 +3,15 @@
 source conf.sh
 
 
+exitGracefully() {
+	kill $(ps aux | grep fetch_osc_and_apply | awk '{print $2}')
+	sleep 8
+	kill $(ps aux | grep osm-base | awk '{print $2}')
+}
+
+trap exitGracefully SIGTERM
+
+
 #delete lockfiles
 rm $DBDIR/osm3s*
 
