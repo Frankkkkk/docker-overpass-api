@@ -7,7 +7,7 @@ Its actually a full install of the [overpass api server](http://overpass-api.de/
 * metadata support
 * Minute updates
 * Area creation and updates
-* API access over apache
+* API access over apache (http://URL/api/{timestamp, interpreter}
 
 ## How to run
 The easiest way is to simply type `make`.
