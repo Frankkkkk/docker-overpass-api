@@ -6,7 +6,8 @@ source conf.sh
 #delete lockfiles
 rm $DBDIR/osm3s*
 
-./clone_db.sh #If it doesn't exist, clone it
+#If it doesn't exist, clone it
+./clone_db.sh  2>&1 > /clone_db.log
 
 #run the dispatcher
 $BINDIR/dispatcher --osm-base --meta --db-dir=$DBDIR &
