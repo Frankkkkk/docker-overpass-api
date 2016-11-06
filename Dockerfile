@@ -45,7 +45,7 @@ WORKDIR /
 
 COPY *.sh /
 
-ADD www /
+ADD www /www
 
 CMD ["/run.sh"]
 
