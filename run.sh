@@ -11,6 +11,13 @@ exitGracefully() {
 
 trap exitGracefully SIGTERM
 
+sleep 20
+
+sed -i "s/VHOST_EMAIL/$VHOST_EMAIL/g" /etc/apache2/sites-enabled/vhost_apache.conf || true
+sed -i "s/VHOST_FQDN/$VHOST_FQDN/g" /etc/apache2/sites-enabled/vhost_apache.conf || true
+
+sed -i "s/VHOST_EMAIL/$VHOST_EMAIL/g" /www/index.html || true
+
 
 #delete lockfiles
 rm $DBDIR/osm3s*

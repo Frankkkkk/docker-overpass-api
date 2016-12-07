@@ -1,9 +1,9 @@
-OVERPASS_DB_DIR=/mnt/ssd/overpass_DB
+include conf.sh
 run: build
 	docker run -d \
 	--restart=always \
 	-v $(OVERPASS_DB_DIR):/overpass_DB \
-	-p 5001:80 \
+	-p $(SERVER_HTTP_PORT):80 \
 	overpass_api
 
 build:
