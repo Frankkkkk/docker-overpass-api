@@ -3,7 +3,7 @@
 ## What is it ?
 Its actually a full install of the [overpass api server](http://overpass-api.de/). It supports:
 
-*  Database clone from the planet.osm files
+* Database clone from the planet.osm files
 * metadata support
 * Minute updates
 * Area creation and updates
@@ -34,5 +34,6 @@ about 240Gb.
 You can add your custom web pages to the www directory and change your 
 domain/email address on the `conf.sh` file.
 
-Also, if you dont live "network-near" Germany, you could additionnaly change the 
-FTP server in the `conf.sh` file.
+Also, if you don't live "network-near" Germany, you could additionally change 
+the FTP server in the `conf.sh` file.
+
