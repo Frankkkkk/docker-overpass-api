@@ -38,7 +38,7 @@ RUN \
 
 #Compile
 RUN \
-	./configure --enable-lz4 --prefix="`pwd`" && \
+	./configure --enable-lz4 CXXFLAGS="-O2" --prefix="`pwd`" && \
 	make -j $(nproc --all)
 
 

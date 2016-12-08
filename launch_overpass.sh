@@ -3,15 +3,14 @@
 source conf.sh
 
 
-#If database doesn't exist, clone it
-echo "WIll clone DB"
-./clone_db.sh
+#If database doesn't exist, fetch the .osm and init the overpass db
+echo "Raw installation, will init DB from .osm planet"
+./init_db_from_osm_planet.sh
 
 echo "Will run dispatcher"
 
 #run the dispatcher
 $BINDIR/dispatcher --osm-base --meta --db-dir=$DBDIR &
-chmod 666 $DBDIR/osm3s_v0.7.52_osm_base
 sleep 5 #In case
 
 echo "Will run diff fetcher"
@@ -24,7 +23,6 @@ $BINDIR/fetch_osc_and_apply.sh $REPLICATE_SERVER --meta=yes &
 echo "Will run areas"
 cp -pR $OPASS_MAIN/src/rules $DBDIR/
 $BINDIR/dispatcher --areas --db-dir=$DBDIR &
-chmod 666 $DBDIR/osm3s_v0.7.52_areas
 
 
 sleep 5
