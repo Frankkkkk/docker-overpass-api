@@ -13,39 +13,23 @@ trap exitGracefully SIGTERM
 
 sleep 20
 
+
+#Configure apache contact values + index.html
 sed -i "s/VHOST_EMAIL/$VHOST_EMAIL/g" /etc/apache2/sites-enabled/vhost_apache.conf || true
 sed -i "s/VHOST_FQDN/$VHOST_FQDN/g" /etc/apache2/sites-enabled/vhost_apache.conf || true
 
 sed -i "s/VHOST_EMAIL/$VHOST_EMAIL/g" /www/index.html || true
 
 
-#delete lockfiles
-rm $DBDIR/osm3s*
-
-#If it doesn't exist, clone it
-./clone_db.sh  2>&1 > /clone_db.log
-
-#run the dispatcher
-$BINDIR/dispatcher --osm-base --meta --db-dir=$DBDIR &
-chmod 666 $DBDIR/osm3s_v0.7.52_osm_base
-sleep 5 #In case
-
 #start apache for queries
 service apache2 start
 
-#run the diff fetcher
-$BINDIR/fetch_osc_and_apply.sh $REPLICATE_SERVER --meta=yes &
+#delete lockfiles
+rm $DBDIR/osm3s*
 
+#make sure DBDIR is readable by overpass_api user
+chmod uog+rw $DBDIR
+chmod uog+rw $DBDIR/*
 
-#AREAS
-cp -pR $OPASS_MAIN/src/rules $DBDIR/
-$BINDIR/dispatcher --areas --db-dir=$DBDIR &
-chmod 666 $DBDIR/osm3s_v0.7.52_areas
-sleep 5
-$BINDIR/rules_loop.sh $DBDIR &
+su overpass_api -c '/launch_overpass.sh'
 
-
-
-while true; do
-	sleep 2000;
-done

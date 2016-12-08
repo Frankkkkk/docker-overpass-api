@@ -22,3 +22,4 @@ if [ ! -e $DBDIR/nodes.bin ]; then
 	#Write the replicate id, 7 days before
 	echo $(($NUM - 1440*7)) > $DBDIR/replicate_id
 fi
+

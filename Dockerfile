@@ -53,6 +53,8 @@ COPY *.sh /
 
 ADD www /www
 
+RUN useradd overpass_api
+
 CMD ["/run.sh"]
 
 VOLUME "/overpass_DB"
