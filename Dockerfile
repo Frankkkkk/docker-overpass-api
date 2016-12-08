@@ -22,7 +22,11 @@ RUN apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/drolbr/Overpass-API.git
+WORKDIR /Overpass-API
+#Checkout latest version
+RUN git checkout $(git describe --abbrev=0 --tags)
 
+#Configure
 WORKDIR /Overpass-API/src
 RUN \
 	autoscan && \
@@ -32,9 +36,10 @@ RUN \
 	automake-1.11 --add-missing && \
 	autoconf
 
+#Compile
 RUN \
-	./configure --enable-lz4 CXXFLAGS="-O3" --prefix="`pwd`" && \
-	make -j `nproc --all`
+	./configure --enable-lz4 --prefix="`pwd`" && \
+	make -j $(nproc --all)
 
 
 COPY vhost_apache.conf /etc/apache2/sites-available
