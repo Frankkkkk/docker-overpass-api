@@ -9,7 +9,14 @@ Its actually a full install of the [overpass api server](http://overpass-api.de/
 * Area creation and updates
 * API access over apache (http://URL/api/timestamp , http://URL/api/interpreter)
 
-## How to run
+## Before building the docker
+You need to download the Overpass DB, You can do it as it's described here http://overpass-api.de/no_frills.html
+
+## How to run using standard Docker commands
+You can simply build the Docker image by `docker build -t overpass_api .` and the run the docker container by `docker run -d --restart=always -v <PATH TO THE OVERPASS DB> -p 80:80 overpass_api`.
+NOTE: After the server start up you have to wait several minutes until the DB is loaded. In order to check the status you can use `docker logs` command.
+
+## How to run using makefile
 The easiest way is to simply type `make`.
 I don't know about docker volumes, so the makefile specifies where the DB should 
 be stored on your server. By default, the path is `/mnt/ssd/overpass_DB`. You 
