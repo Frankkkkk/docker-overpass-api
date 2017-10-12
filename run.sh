@@ -4,12 +4,13 @@ source conf.sh
 
 
 exitGracefully() {
-	kill $(ps aux | grep fetch_osc_and_apply | awk '{print $2}')
+	service apache2 stop
+	pkill fetch_osc_and_apply
 	sleep 8
-	kill $(ps aux | grep osm-base | awk '{print $2}')
+	pkill osm-base
 }
 
-trap exitGracefully SIGTERM
+trap exitGracefully EXIT
 
 sleep 20
 
