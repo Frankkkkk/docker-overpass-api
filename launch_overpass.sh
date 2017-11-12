@@ -2,6 +2,9 @@
 
 source conf.sh
 
+# Kill all background processes on exit
+trap "exit" INT TERM
+trap "kill 0" EXIT
 
 #If database doesn't exist, fetch the .osm and init the overpass db
 echo "Raw installation, will init DB from .osm planet"
