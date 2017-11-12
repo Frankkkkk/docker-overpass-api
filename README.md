@@ -10,8 +10,8 @@ Its actually a full install of the [overpass api server](http://overpass-api.de/
 * API access over apache (http://URL/api/timestamp , http://URL/api/interpreter)
 
 ## How to run using standard Docker commands
-You can simply build the Docker image by `docker build -t overpass_api .` and the run the docker container by `docker run -d --restart=always -v <PATH TO THE OVERPASS DB> -p 80:80 overpass_api`.
-NOTE: After the server start up you have to wait several minutes until the DB is loaded. In order to check the status you can use `docker logs` command.
+You can simply build the Docker image by `docker build -t overpass_api .` and the run the docker container by `docker run -d --restart=always -v <PATH TO THE OVERPASS DB ON HOST>:/overpass_DB -p 80:80 overpass_api`.
+NOTE: After the server start up you have to wait several minutes (or hours depending on the planet size) until the DB is loaded. In order to check the status you can use `docker logs` command.
 
 ## How to run using makefile
 The easiest way is to simply type `make`.
