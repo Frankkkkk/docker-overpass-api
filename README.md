@@ -1,3 +1,10 @@
+# UNMAINTAINED
+
+Warning, this repo is no longer maintained. If you want write-access to it, don't hesitate to ask me.
+
+Cheers.
+
+
 # Overpass API docker image
 
 ## What is it ?
